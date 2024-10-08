@@ -1,11 +1,17 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
+ * Also added the random package, which allows the program to 
+ * pick a random number in a set, in this case a set of arrays/
+ * array list. Added the shufflePlay method, which plays a random
+ * song, and then the randomPlay method, which play the songs in
+ * a random order each time.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @author Sebastian Portillo
+ * @version 10/4/24
  */
 public class MusicOrganizer
 {
@@ -59,18 +65,40 @@ public class MusicOrganizer
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
         }
     }
-    
     /**
-     * Return the number of tracks in the collection.
+     * Shuffles songs and plays it in a random order
+     * @param playtrack 
+     */
+    //This method picks a song in random order to play it 
+    public void shufflePlay (){
+        if( tracks.size() > 0)
+        {
+         Random rand = new Random();
+         int index =rand.nextInt(tracks.size());
+         playTrack(index);
+        }
+    }
+    //this method plays each song one time at a random order
+    public void randomPlay(){
+        Random rand = new Random();
+        ArrayList<Track> leftToPlay = new ArrayList<Track>(tracks);
+        while(leftToPlay.size() > 0){
+            int index = rand.nextInt(leftToPlay.size());
+            Track t = leftToPlay.remove(index);
+            player.playSample(t.getFilename());
+        
+    }
+} 
+
+/**
+   * Return the number of tracks in the collection.
      * @return The number of tracks in the collection.
      */
     public int getNumberOfTracks()
     {
         return tracks.size();
     }
-    
-    /**
-     * List a track from the collection.
+    /** * List a track from the collection.
      * @param index The index of the track to be listed.
      */
     public void listTrack(int index)

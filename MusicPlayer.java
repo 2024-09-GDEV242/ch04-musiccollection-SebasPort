@@ -6,13 +6,15 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.AudioDevice;
 import javazoom.jl.player.FactoryRegistry;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import java.util.Random;
+
 
 /**
  * Provide basic playing of MP3 files via the javazoom library.
  * See http://www.javazoom.net/
  * 
- * @author David J. Barnes and Michael Kölling.
- * @version 2016.02.29
+ * @author Sebastian Portillo
+ * @version 10/04/24
  */
 public class MusicPlayer
 {
@@ -45,6 +47,9 @@ public class MusicPlayer
             killPlayer();
         }
     }
+
+
+    
     
     /**
      * Start playing the given audio file.
